@@ -1,0 +1,44 @@
+* {box-sizing:border-box;}
+body {background-color: #CCC;}
+
+.bgimg {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    z-index:-1;
+    opacity:1;S
+}
+
+.greeting {
+    color:black;
+    text-shadow: 1px 1px 3px rgba(255,255,255, .5);
+    text-align: center;
+
+@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+.search {
+  width: 100%;
+  position: relative;
+}S
+.searchTerm {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border: 5px solid #8FC357;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.searchButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+}
+

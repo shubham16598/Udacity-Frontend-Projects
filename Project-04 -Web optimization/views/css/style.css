@@ -1,0 +1,84 @@
+/** {
+  outline: 1px solid red !important;
+}*/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -box-sizing: border-box;
+}
+
+body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background: black;
+}
+
+input {
+  background: grey;
+  font-size: 18px;
+}
+
+form {
+  display: inline-block;
+}
+
+.centered {
+  text-align: center;
+}
+
+#pizzaSize {
+  font-weight: 800;
+}
+
+.mover {
+  position: fixed;
+  width: 256px;
+  z-index: -1;
+  left: 0px;
+  /* Hack from David Walsh. How force div onto it's own layer. Massive speed up for painting time */
+  /* http://davidwalsh.name/translate3d */
+  transform: translatex(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+.randomPizzaContainer {
+  float: left;
+  display: flex;
+  height: 325px;
+}
+
+.randomPizzaContainer:after {
+  content: "";
+  display: table;
+  clear:both;
+}
+
+ .container {
+  background-color: rgba(240, 60, 60, 0.8);
+}
+
+
+
+#randomPizzas.smallPizzas .randomPizzaContainer {
+  width: 25%;
+}
+
+#randomPizzas.mediumPizzas .randomPizzaContainer {
+  width: 33%;
+}
+
+#randomPizzas.largePizzas .randomPizzaContainer {
+  width: 50%;
+}
+
+.pizzaSmall {
+  width: 25%;
+}
+
+.pizzaMedium {
+  width: 33%;
+}
+
+.pizzaLarge {
+  width: 50%;
+}
