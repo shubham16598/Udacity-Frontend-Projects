@@ -1,18 +1,35 @@
+//cardList to store array
 var cardList = [];
-$('.deck li>i').each(function(j, i) {
-  cardList.push($(i).attr('class').split(' ')[1]);
+
+//to push classname in cardList array
+$('.deck li>i').each(function() {
+  cardList.push($(this).attr('class').split(' ')[1]);//findind class and pushing into array
 });
+
+//shuffling of array for every new game
+var temp = 0;
+cardList = shuffle(cardList);
 console.log(cardList);
-var moves = 0;
-var match_found = 0;
+$('.deck li>i').each(function() {
+  var currentCard = $(this).attr('class').split(' ')[1];
+  $(this).removeClass(currentCard);
+  $(this).addClass(cardList[temp]);
+  temp++;
+});
+
+
+//starting timer
 var timer = new Timer();
 timer.start();
 timer.addEventListener('secondsUpdated', function (e) {
     $('#timer').html(timer.getTimeValues().toString());
 });
-           
 
-$('#reset-button').click(resetGame);//call resetGame function to reset the game
+//restart function
+$('.restart').click(function(){
+    document.location.reload();
+});//call resetGame function to reset the game
+
 
 $(".card").click(function(){
   $(this).addClass("open show");
@@ -31,12 +48,4 @@ function shuffle(array) {
     }
 
     return array;
-}
-
-function resetGame() {
-    moves = 0;
-    match_found = 0;
-    game_started=false;
-    timer.stop();
-    $('#timer').html("00:00:00");
 }
