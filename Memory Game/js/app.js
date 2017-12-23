@@ -19,17 +19,17 @@ $('.deck li>i').each(function() {
 
 //shuffle function
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 
@@ -37,30 +37,50 @@ function shuffle(array) {
 var timer = new Timer();
 timer.start();
 timer.addEventListener('secondsUpdated', function (e) {
-    $('#timer').html(timer.getTimeValues().toString());
+  $('#timer').html(timer.getTimeValues().toString());
 });
 
 //restart function
 $('.restart').click(function(){
-    document.location.reload();
+  document.location.reload();
 });
 
 var moves = 0;
-
+var open = [];
 //declaring starFunction for showing level
 starFunction = function(){
   moves++;
   if(moves>10){
-     $('#third-star').removeClass('fa fa-star');
+    $('#third-star').removeClass('fa fa-star');
   }else if(moves>10 && moves <20){
-     $('#second-star').removeClass('fa fa-star');
+    $('#second-star').removeClass('fa fa-star');
   }
 }
+
 
 $(".card").click(function(){
   starFunction();//calling star function
   $(this).addClass("open show");
   $('.moves').text(moves);
+  open.push($(this).find('i').attr('class').split(' ')[1]);
+  if (open.length == 2) {
+    $('.card').unbind('click');
+    setTimeout(function() {
+      if (open[0]==open[1]) {
+        $('.' + open[0]).parent().addClass("match");
+        $('.' + open[1]).parent().addClass("match");
 
+      }else {
+        $('.' + open[0]).parent().removeClass("open show");
+        $('.' + open[1]).parent().removeClass("open show");
+
+      }
+      open.splice(0, open.length);
+      console.log(open);
+      $('.card').bind('click');
+    },2000);
+
+
+  }
 
 });
