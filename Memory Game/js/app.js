@@ -59,12 +59,14 @@ starFunction = function(){
 
 
 $(".card").click(function(){
+  if (open.length ==2) {
+    return;
+  }
   starFunction();//calling star function
   $(this).addClass("open show");
   $('.moves').text(moves);
   open.push($(this).find('i').attr('class').split(' ')[1]);
   if (open.length == 2) {
-    $('.card').unbind('click');
     setTimeout(function() {
       if (open[0]==open[1]) {
         $('.' + open[0]).parent().addClass("match");
@@ -77,7 +79,6 @@ $(".card").click(function(){
       }
       open.splice(0, open.length);
       console.log(open);
-      $('.card').bind('click');
     },2000);
 
 
