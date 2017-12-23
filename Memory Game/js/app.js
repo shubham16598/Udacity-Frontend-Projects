@@ -17,25 +17,7 @@ $('.deck li>i').each(function() {
   temp++;
 });
 
-
-//starting timer
-var timer = new Timer();
-timer.start();
-timer.addEventListener('secondsUpdated', function (e) {
-    $('#timer').html(timer.getTimeValues().toString());
-});
-
-//restart function
-$('.restart').click(function(){
-    document.location.reload();
-});//call resetGame function to reset the game
-
-
-$(".card").click(function(){
-  $(this).addClass("open show");
-});
-
-
+//shuffle function
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -49,3 +31,36 @@ function shuffle(array) {
 
     return array;
 }
+
+
+//starting timer
+var timer = new Timer();
+timer.start();
+timer.addEventListener('secondsUpdated', function (e) {
+    $('#timer').html(timer.getTimeValues().toString());
+});
+
+//restart function
+$('.restart').click(function(){
+    document.location.reload();
+});
+
+var moves = 0;
+
+//declaring starFunction for showing level
+starFunction = function(){
+  moves++;
+  if(moves>10){
+     $('#third-star').removeClass('fa fa-star');
+  }else if(moves>10 && moves <20){
+     $('#second-star').removeClass('fa fa-star');
+  }
+}
+
+$(".card").click(function(){
+  starFunction();//calling star function
+  $(this).addClass("open show");
+  $('.moves').text(moves);
+
+
+});
