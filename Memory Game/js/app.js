@@ -96,7 +96,7 @@ $(".card").click(function() {
   }
 });
 
-//Popup implemented
+//Popup implemented using sweetheart alert
 function popup() {
   timer.stop();
   swal({
